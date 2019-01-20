@@ -260,7 +260,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]] # (if 'answer' != 'y')
 	
 	echo -e "24. Running '$cyn $cmd24 $rstclr'"
 	sleep 3
-	if [[ "$dry_run" = false ]] ; then printf "\"@reboot sudo /home/roger/start-deluge.sh\" >> crontab.lst\n" >> crontab.lst; sleep 1; fi
+	if [[ "$dry_run" = false ]] ; then printf "@reboot sudo /home/roger/start-deluge.sh\n" >> crontab.lst >> crontab.lst; sleep 1; fi
 	echo -e "$grn ... Done $rstclr"
 	echo
 	echo
