@@ -58,7 +58,7 @@ cmd28="crontab crontab.lst"
 cmd29="mkdir /var/lib/deluge/torrent"
 cmd30="chmod 777 /var/lib/deluge/torrent"
 # Reboot
-cmd29="reboot"
+cmd31="reboot"
 
 
 echo -e "$ylw This script installs and configures openvpn, deluged & deluge-web for lubuntu 18.04 $rstclr"
@@ -95,6 +95,8 @@ echo -e "26.$cyn $cmd26 $rstclr"
 echo -e "27.$cyn $cmd27 $rstclr"
 echo -e "28.$cyn $cmd28 $rstclr"
 echo -e "29.$cyn $cmd29 $rstclr"
+echo -e "30.$cyn $cmd29 $rstclr"
+echo -e "31.$cyn $cmd29 $rstclr"
 echo
 
 read -p "Ok for you? ('y' to continue...) " -n 1 -r
@@ -304,6 +306,20 @@ if [[ ! $REPLY =~ ^[Yy]$ ]] # (if 'answer' != 'y')
 	
 	echo -e "29. Running '$cyn $cmd29 $rstclr'"
 	sleep 3
+	if [[ "$dry_run" = false ]] ; then $cmd29; sleep 1; fi
+	echo -e "$grn ... Done $rstclr"
+	echo
+	echo
+	
+	echo -e "30. Running '$cyn $cmd30 $rstclr'"
+	sleep 3
+	if [[ "$dry_run" = false ]] ; then $cmd30; sleep 1; fi
+	echo -e "$grn ... Done $rstclr"
+	echo
+	echo
+	
+	echo -e "31. Running '$cyn $cmd31 $rstclr'"
+	sleep 3
 	read -p "The system needs to reboot. Ready? ('y' to reboot...) " -n 1 -r
 		if [[ ! $REPLY =~ ^[Yy]$ ]]
 			then
@@ -317,7 +333,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]] # (if 'answer' != 'y')
 			echo -e "$ylw The system is going to reboot... $rstclr $lghrd => Run 'systemctl status deluged', 'systemctl status deluge-web' & 'curl ipconfig.io' to confirm everything is running as expected. $rstclr"
 			echo
 			sleep 5
-			if [[ "$dry_run" = false ]] ; then $cmd29; fi
+			if [[ "$dry_run" = false ]] ; then $cmd31; fi
 		fi
 fi
 
