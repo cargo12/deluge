@@ -51,6 +51,8 @@ cmd22="cp ./stop-deluge.sh /home/roger/"
 cmd23="crontab -l > crontab.lst"
 cmd24="printf \"@reboot sudo /home/roger/start-deluge.sh\" >> crontab.lst" # Ne fonctionne pas, a coder en dur
 cmd25="crontab crontab.lst"
+# Reboot
+cmd26="reboot"
 
 
 echo -e "$ylw This script installs and configures openvpn, deluged & deluge-web for lubuntu 18.04 $rstclr"
@@ -75,14 +77,15 @@ echo -e "14.$cyn $cmd14 $rstclr"
 echo -e "15.$cyn $cmd15 $rstclr"
 echo -e "16.$cyn $cmd16 $rstclr"
 echo -e "17.$cyn $cmd17 $rstclr"
-echo -e "18.$cyn $cmd17 $rstclr"
-echo -e "19.$cyn $cmd17 $rstclr"
-echo -e "20.$cyn $cmd17 $rstclr"
-echo -e "21.$cyn $cmd17 $rstclr"
-echo -e "22.$cyn $cmd17 $rstclr"
-echo -e "23.$cyn $cmd17 $rstclr"
-echo -e "24.$cyn $cmd17 $rstclr"
-echo -e "25.$cyn $cmd17 $rstclr"
+echo -e "18.$cyn $cmd18 $rstclr"
+echo -e "19.$cyn $cmd19 $rstclr"
+echo -e "20.$cyn $cmd20 $rstclr"
+echo -e "21.$cyn $cmd21 $rstclr"
+echo -e "22.$cyn $cmd22 $rstclr"
+echo -e "23.$cyn $cmd23 $rstclr"
+echo -e "24.$cyn $cmd24 $rstclr"
+echo -e "25.$cyn $cmd25 $rstclr"
+echo -e "26.$cyn $cmd26 $rstclr"
 echo
 
 read -p "Ok for you? ('y' to continue...) " -n 1 -r
@@ -219,49 +222,49 @@ if [[ ! $REPLY =~ ^[Yy]$ ]] # (if 'answer' != 'y')
 	echo -e "$grn ... Done $rstclr"
 	echo
 	echo
-
+	
 	echo -e "19. Running '$cyn $cmd19 $rstclr'"
 	sleep 3
 	if [[ "$dry_run" = false ]] ; then $cmd19; sleep 1; fi
 	echo -e "$grn ... Done $rstclr"
 	echo
 	echo
-
+	
 	echo -e "20. Running '$cyn $cmd20 $rstclr'"
 	sleep 3
 	if [[ "$dry_run" = false ]] ; then $cmd20; sleep 1; fi
 	echo -e "$grn ... Done $rstclr"
 	echo
 	echo
-
+	
 	echo -e "21. Running '$cyn $cmd21 $rstclr'"
 	sleep 3
 	if [[ "$dry_run" = false ]] ; then $cmd21; sleep 1; fi
 	echo -e "$grn ... Done $rstclr"
 	echo
 	echo
-
+	
 	echo -e "22. Running '$cyn $cmd22 $rstclr'"
 	sleep 3
 	if [[ "$dry_run" = false ]] ; then $cmd22; sleep 1; fi
 	echo -e "$grn ... Done $rstclr"
 	echo
 	echo
-
+	
 	echo -e "23. Running '$cyn $cmd23 $rstclr'"
 	sleep 3
 	if [[ "$dry_run" = false ]] ; then $cmd23; sleep 1; fi
 	echo -e "$grn ... Done $rstclr"
 	echo
 	echo
-
+	
 	echo -e "24. Running '$cyn $cmd24 $rstclr'"
 	sleep 3
-	if [[ "$dry_run" = false ]] ; then $cmd24; sleep 1; fi
+	if [[ "$dry_run" = false ]] ; then printf "\"@reboot sudo /home/roger/start-deluge.sh\" >> crontab.lst\n" >> crontab.lst; sleep 1; fi
 	echo -e "$grn ... Done $rstclr"
 	echo
 	echo
-
+	
 	echo -e "25. Running '$cyn $cmd25 $rstclr'"
 	sleep 3
 	if [[ "$dry_run" = false ]] ; then $cmd25; sleep 1; fi
@@ -285,7 +288,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]] # (if 'answer' != 'y')
 			echo -e "$ylw The system is going to reboot... $rstclr"
 			echo
 			sleep 5
-			if [[ "$dry_run" = false ]] ; then $cmd17; fi
+			if [[ "$dry_run" = false ]] ; then $cmd26; fi
 		fi
 fi
 
