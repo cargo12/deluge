@@ -47,13 +47,15 @@ cmd20="systemctl status deluged"
 cmd21="systemctl status deluge-web"
 # Copy start-stop scripts
 cmd22="cp ./start-deluge.sh /home/roger/"
-cmd23="cp ./stop-deluge.sh /home/roger/"
+cmd23="chmod +x /home/roger/start-deluge.sh"
+cmd24="cp ./stop-deluge.sh /home/roger/"
+cmd25="chmod +x /home/roger/stop-deluge.sh"
 # Configure crontab for openvpn & deluged auto-start
-cmd24="crontab -l > crontab.lst"
-cmd25="printf \"@reboot sudo /home/roger/start-deluge.sh\" >> crontab.lst" # Ne fonctionne pas, a coder en dur
-cmd26="crontab crontab.lst"
+cmd26="crontab -l > crontab.lst"
+cmd27="printf \"@reboot sudo /home/roger/start-deluge.sh\" >> crontab.lst" # Ne fonctionne pas, a coder en dur
+cmd28="crontab crontab.lst"
 # Reboot
-cmd27="reboot"
+cmd29="reboot"
 
 
 echo -e "$ylw This script installs and configures openvpn, deluged & deluge-web for lubuntu 18.04 $rstclr"
@@ -87,6 +89,9 @@ echo -e "23.$cyn $cmd23 $rstclr"
 echo -e "24.$cyn $cmd24 $rstclr"
 echo -e "25.$cyn $cmd25 $rstclr"
 echo -e "26.$cyn $cmd26 $rstclr"
+echo -e "27.$cyn $cmd26 $rstclr"
+echo -e "28.$cyn $cmd26 $rstclr"
+echo -e "29.$cyn $cmd26 $rstclr"
 echo
 
 read -p "Ok for you? ('y' to continue...) " -n 1 -r
@@ -268,7 +273,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]] # (if 'answer' != 'y')
 	
 	echo -e "25. Running '$cyn $cmd25 $rstclr'"
 	sleep 3
-	if [[ "$dry_run" = false ]] ; then printf "@reboot sudo /home/roger/start-deluge.sh\n" >> crontab.lst >> crontab.lst; sleep 1; fi
+	if [[ "$dry_run" = false ]] ; then $cmd25; sleep 1; fi
 	echo -e "$grn ... Done $rstclr"
 	echo
 	echo
@@ -279,9 +284,22 @@ if [[ ! $REPLY =~ ^[Yy]$ ]] # (if 'answer' != 'y')
 	echo -e "$grn ... Done $rstclr"
 	echo
 	echo
-
 	
 	echo -e "27. Running '$cyn $cmd27 $rstclr'"
+	sleep 3
+	if [[ "$dry_run" = false ]] ; then printf "@reboot sudo /home/roger/start-deluge.sh\n" >> crontab.lst >> crontab.lst; sleep 1; fi
+	echo -e "$grn ... Done $rstclr"
+	echo
+	echo
+	
+	echo -e "28. Running '$cyn $cmd28 $rstclr'"
+	sleep 3
+	if [[ "$dry_run" = false ]] ; then $cmd28; sleep 1; fi
+	echo -e "$grn ... Done $rstclr"
+	echo
+	echo
+	
+	echo -e "29. Running '$cyn $cmd29 $rstclr'"
 	sleep 3
 	read -p "The system needs to reboot. Ready? ('y' to reboot...) " -n 1 -r
 		if [[ ! $REPLY =~ ^[Yy]$ ]]
@@ -293,10 +311,10 @@ if [[ ! $REPLY =~ ^[Yy]$ ]] # (if 'answer' != 'y')
 		else
 			echo
 			echo
-			echo -e "$ylw The system is going to reboot... $rstclr"
+			echo -e "$ylw The system is going to reboot... $rstclr $lghrd => Run 'systemctl status deluged', 'systemctl status deluge-web' & 'curl ipconfig.io' to confirm everything is running as expected. $rstclr"
 			echo
 			sleep 5
-			if [[ "$dry_run" = false ]] ; then $cmd27; fi
+			if [[ "$dry_run" = false ]] ; then $cmd29; fi
 		fi
 fi
 
