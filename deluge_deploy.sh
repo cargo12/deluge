@@ -54,6 +54,9 @@ cmd25="chmod +x /home/roger/stop-deluge.sh"
 cmd26="crontab -l > crontab.lst"
 cmd27="printf \"@reboot sudo /home/roger/start-deluge.sh\" >> crontab.lst" # Ne fonctionne pas, a coder en dur
 cmd28="crontab crontab.lst"
+# Configure torrent folder
+cmd29="mkdir /var/lib/deluge/torrent"
+cmd30="chmod 777 /var/lib/deluge/torrent"
 # Reboot
 cmd29="reboot"
 
