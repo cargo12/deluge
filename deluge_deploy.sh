@@ -89,9 +89,9 @@ echo -e "23.$cyn $cmd23 $rstclr"
 echo -e "24.$cyn $cmd24 $rstclr"
 echo -e "25.$cyn $cmd25 $rstclr"
 echo -e "26.$cyn $cmd26 $rstclr"
-echo -e "27.$cyn $cmd26 $rstclr"
-echo -e "28.$cyn $cmd26 $rstclr"
-echo -e "29.$cyn $cmd26 $rstclr"
+echo -e "27.$cyn $cmd27 $rstclr"
+echo -e "28.$cyn $cmd28 $rstclr"
+echo -e "29.$cyn $cmd29 $rstclr"
 echo
 
 read -p "Ok for you? ('y' to continue...) " -n 1 -r
