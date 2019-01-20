@@ -28,7 +28,7 @@ cmd5="cp ./01-netcfg.yaml /etc/netplan/"
 cmd6="cp ./auth.txt /home/roger/"
 cmd7="cp ./porcia.ovpn /home/roger"
 # Deluge user
-cmd8="adduser --system  --gecos \"Deluge Service\" --disabled-password --group --home /var/lib/deluge deluge"
+cmd8="adduser --system --gecos \"Deluge Service\" --disabled-password --group --home /var/lib/deluge deluge"
 cmd9="adduser roger deluge"
 cmd10="update-rc.d deluge-daemon remove"
 # Deluged
