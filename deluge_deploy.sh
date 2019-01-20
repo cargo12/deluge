@@ -28,31 +28,32 @@ cmd5="cp ./01-netcfg.yaml /etc/netplan/"
 cmd6="cp ./auth.txt /home/roger/"
 cmd7="cp ./porcia.ovpn /home/roger"
 # Deluge user
-cmd8="adduser --system --gecos \"Deluge Service\" --disabled-password --group --home /var/lib/deluge deluge"
-cmd9="adduser roger deluge"
-cmd10="update-rc.d deluge-daemon remove"
+cmd8="addgroup deluge --system"
+cmd9="adduser deluge --system --gecos --disabled-password --home /var/lib/deluge"
+cmd10="adduser roger deluge"
+cmd11="update-rc.d deluge-daemon remove"
 # Deluged
-cmd11="cp ./deluged.service /etc/systemd/system/"
-cmd12="systemctl enable /etc/systemd/system/deluged.service"
-cmd13="systemctl stop deluged"
-cmd14="systemctl start deluged"
+cmd12="cp ./deluged.service /etc/systemd/system/"
+cmd13="systemctl enable /etc/systemd/system/deluged.service"
+cmd14="systemctl stop deluged"
+cmd15="systemctl start deluged"
 # Deluge-web
-cmd15="cp ./deluge-web.service /etc/systemd/system/"
-cmd16="systemctl enable /etc/systemd/system/deluge-web.service"
-cmd17="systemctl stop deluge-web"
-cmd18="systemctl start deluge-web"
+cmd16="cp ./deluge-web.service /etc/systemd/system/"
+cmd17="systemctl enable /etc/systemd/system/deluge-web.service"
+cmd18="systemctl stop deluge-web"
+cmd19="systemctl start deluge-web"
 # Deluged - Deluge-web status
-cmd19="systemctl status deluged"
-cmd20="systemctl status deluge-web"
+cmd20="systemctl status deluged"
+cmd21="systemctl status deluge-web"
 # Copy start-stop scripts
-cmd21="cp ./start-deluge.sh /home/roger/"
-cmd22="cp ./stop-deluge.sh /home/roger/"
+cmd22="cp ./start-deluge.sh /home/roger/"
+cmd23="cp ./stop-deluge.sh /home/roger/"
 # Configure crontab for openvpn & deluged auto-start
-cmd23="crontab -l > crontab.lst"
-cmd24="printf \"@reboot sudo /home/roger/start-deluge.sh\" >> crontab.lst" # Ne fonctionne pas, a coder en dur
-cmd25="crontab crontab.lst"
+cmd24="crontab -l > crontab.lst"
+cmd25="printf \"@reboot sudo /home/roger/start-deluge.sh\" >> crontab.lst" # Ne fonctionne pas, a coder en dur
+cmd26="crontab crontab.lst"
 # Reboot
-cmd26="reboot"
+cmd27="reboot"
 
 
 echo -e "$ylw This script installs and configures openvpn, deluged & deluge-web for lubuntu 18.04 $rstclr"
@@ -260,20 +261,27 @@ if [[ ! $REPLY =~ ^[Yy]$ ]] # (if 'answer' != 'y')
 	
 	echo -e "24. Running '$cyn $cmd24 $rstclr'"
 	sleep 3
-	if [[ "$dry_run" = false ]] ; then printf "@reboot sudo /home/roger/start-deluge.sh\n" >> crontab.lst >> crontab.lst; sleep 1; fi
+	if [[ "$dry_run" = false ]] ; then $cmd24; sleep 1; fi
 	echo -e "$grn ... Done $rstclr"
 	echo
 	echo
 	
 	echo -e "25. Running '$cyn $cmd25 $rstclr'"
 	sleep 3
-	if [[ "$dry_run" = false ]] ; then $cmd25; sleep 1; fi
+	if [[ "$dry_run" = false ]] ; then printf "@reboot sudo /home/roger/start-deluge.sh\n" >> crontab.lst >> crontab.lst; sleep 1; fi
+	echo -e "$grn ... Done $rstclr"
+	echo
+	echo
+	
+	echo -e "26. Running '$cyn $cmd26 $rstclr'"
+	sleep 3
+	if [[ "$dry_run" = false ]] ; then $cmd26; sleep 1; fi
 	echo -e "$grn ... Done $rstclr"
 	echo
 	echo
 
 	
-	echo -e "26. Running '$cyn $cmd26 $rstclr'"
+	echo -e "27. Running '$cyn $cmd27 $rstclr'"
 	sleep 3
 	read -p "The system needs to reboot. Ready? ('y' to reboot...) " -n 1 -r
 		if [[ ! $REPLY =~ ^[Yy]$ ]]
@@ -288,7 +296,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]] # (if 'answer' != 'y')
 			echo -e "$ylw The system is going to reboot... $rstclr"
 			echo
 			sleep 5
-			if [[ "$dry_run" = false ]] ; then $cmd26; fi
+			if [[ "$dry_run" = false ]] ; then $cmd27; fi
 		fi
 fi
 
